@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Location Breakdown - TiffinTech</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      background-color: #f5f7fa;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    .location-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .location-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+    
+    .veg-orders {
+      background: rgba(76, 175, 80, 0.12);
+      color: #2e7d32;
+    }
+    
+    .nonveg-orders {
+      background: rgba(244, 67, 54, 0.12);
+      color: #c62828;
+    }
+  </style>
+</head>
+<body class="bg-gray-50">
+  <!-- Navigation -->
+  <nav class="bg-white shadow-lg">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="flex justify-between">
+        <div class="flex space-x-7">
+          <div>
+            <a href="index.html" class="flex items-center py-4">
+              <span class="font-semibold text-green-600 text-2xl">TiffinTech</span>
+            </a>
+          </div>
+          <div class="hidden md:flex items-center space-x-1">
+            <a href="index.html" class="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300">Home</a>
+            <a href="browse.html" class="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300">Browse</a>
+          </div>
+        </div>
+        <div class="hidden md:flex items-center space-x-3">
+          <a href="vendor-dashboard.html" class="py-2 px-4 font-medium text-white bg-green-600 rounded">Back to Dashboard</a>
+        </div>
+        <div class="md:hidden flex items-center">
+          <button class="outline-none mobile-menu-button">
+            <svg class="w-6 h-6 text-gray-500" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+              <path d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="hidden mobile-menu">
+      <ul class="pt-2 pb-3">
+        <li><a href="index.html" class="block pl-4 pr-4 py-2 text-sm text-gray-700 hover:bg-green-500 hover:text-white">Home</a></li>
+        <li><a href="browse.html" class="block pl-4 pr-4 py-2 text-sm text-gray-700 hover:bg-green-500 hover:text-white">Browse</a></li>
+        <li><a href="vendor-dashboard.html" class="block pl-4 pr-4 py-2 text-sm text-gray-700 hover:bg-green-500 hover:text-white">Dashboard</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header class="bg-green-600 text-white py-8">
+    <div class="max-w-6xl mx-auto px-6">
+      <h1 class="text-3xl font-bold mb-2">Location-wise Order Breakdown</h1>
+      <p class="text-green-100">Delivery Date: July 21, 2025</p>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-6xl mx-auto px-6 py-8">
+    <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+      <h2 class="text-xl font-bold mb-6 text-center">Extra Orders: 30</h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- A2 Hostel -->
+        <div class="location-card bg-white rounded-lg shadow-md p-6 border-t-4 border-green-500">
+          <h3 class="text-xl font-bold mb-4 text-center">A2 Hostel</h3>
+          <div class="grid grid-cols-2 gap-4 mb-4">
+            <div class="veg-orders p-4 rounded-lg text-center">
+              <p class="font-semibold">Veg Orders</p>
+              <p class="text-2xl font-bold">10</p>
+            </div>
+            <div class="nonveg-orders p-4 rounded-lg text-center">
+              <p class="font-semibold">Non-Veg Orders</p>
+              <p class="text-2xl font-bold">20</p>
+            </div>
+          </div>
+          <div class="bg-green-600 text-white text-center p-3 rounded-lg">
+            <p class="font-semibold">Total Orders: 30</p>
+          </div>
+        </div>
+        
+        <!-- A3 Hostel -->
+        <div class="location-card bg-white rounded-lg shadow-md p-6 border-t-4 border-green-500">
+          <h3 class="text-xl font-bold mb-4 text-center">A3 Hostel</h3>
+          <div class="grid grid-cols-2 gap-4 mb-4">
+            <div class="veg-orders p-4 rounded-lg text-center">
+              <p class="font-semibold">Veg Orders</p>
+              <p class="text-2xl font-bold">10</p>
+            </div>
+            <div class="nonveg-orders p-4 rounded-lg text-center">
+              <p class="font-semibold">Non-Veg Orders</p>
+              <p class="text-2xl font-bold">20</p>
+            </div>
+          </div>
+          <div class="bg-green-600 text-white text-center p-3 rounded-lg">
+            <p class="font-semibold">Total Orders: 30</p>
+          </div>
+        </div>
+        
+        <!-- A4 Hostel -->
+        <div class="location-card bg-white rounded-lg shadow-md p-6 border-t-4 border-green-500">
+          <h3 class="text-xl font-bold mb-4 text-center">A4 Hostel</h3>
+          <div class="grid grid-cols-2 gap-4 mb-4">
+            <div class="veg-orders p-4 rounded-lg text-center">
+              <p class="font-semibold">Veg Orders</p>
+              <p class="text-2xl font-bold">10</p>
+            </div>
+            <div class="nonveg-orders p-4 rounded-lg text-center">
+              <p class="font-semibold">Non-Veg Orders</p>
+              <p class="text-2xl font-bold">20</p>
+            </div>
+          </div>
+          <div class="bg-green-600 text-white text-center p-3 rounded-lg">
+            <p class="font-semibold">Total Orders: 30</p>
+          </div>
+        </div>
+        
+        <!-- A5 Hostel -->
+        <div class="location-card bg-white rounded-lg shadow-md p-6 border-t-4 border-green-500">
+          <h3 class="text-xl font-bold mb-4 text-center">A5 Hostel</h3>
+          <div class="grid grid-cols-2 gap-4 mb-4">
+            <div class="veg-orders p-4 rounded-lg text-center">
+              <p class="font-semibold">Veg Orders</p>
+              <p class="text-2xl font-bold">10</p>
+            </div>
+            <div class="nonveg-orders p-4 rounded-lg text-center">
+              <p class="font-semibold">Non-Veg Orders</p>
+              <p class="text-2xl font-bold">20</p>
+            </div>
+          </div>
+          <div class="bg-green-600 text-white text-center p-3 rounded-lg">
+            <p class="font-semibold">Total Orders: 30</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="mt-8 text-center">
+        <a href="vendor-dashboard.html" class="inline-flex items-center px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition duration-300">
+          <i class="fas fa-arrow-left mr-2"></i> Back to Dashboard
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white pt-10 pb-6">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="flex flex-wrap">
+        <div class="w-full md:w-1/3 mb-6">
+          <h5 class="text-xl font-bold mb-4">TiffinTech</h5>
+          <p class="text-gray-400">Connecting Students with Local Tiffin Services</p>
+        </div>
+        <div class="w-full md:w-1/3 mb-6">
+          <h5 class="text-lg font-bold mb-4">Quick Links</h5>
+          <ul class="text-gray-400">
+            <li class="mb-2"><a href="index.html" class="hover:text-green-400">Home</a></li>
+            <li class="mb-2"><a href="browse.html" class="hover:text-green-400">Browse Vendors</a></li>
+            <li class="mb-2"><a href="vendor-registration.html" class="hover:text-green-400">Vendor Registration</a></li>
+          </ul>
+        </div>
+        <div class="w-full md:w-1/3 mb-6">
+          <h5 class="text-lg font-bold mb-4">Connect With Us</h5>
+          <div class="flex space-x-4">
+            <a href="#" class="text-gray-400 hover:text-green-400">
+              <i class="fab fa-facebook-f text-xl"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-green-400">
+              <i class="fab fa-twitter text-xl"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-green-400">
+              <i class="fab fa-instagram text-xl"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-gray-700 mt-6 pt-6 text-center text-gray-400 text-sm">
+        <p>&copy; 2023 TiffinTech. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Mobile menu functionality
+      const menuButton = document.querySelector('.mobile-menu-button');
+      const menu = document.querySelector('.mobile-menu');
+      
+      if (menuButton && menu) {
+        menuButton.addEventListener('click', () => {
+          menu.classList.toggle('hidden');
+        });
+      }
+    });
+  </script>
+</body>
+</html>

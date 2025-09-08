@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vendor Registration - TiffinTech</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gray-50">
+  <!-- Navigation -->
+  <nav class="bg-white shadow-lg">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="flex justify-between">
+        <div class="flex space-x-7">
+          <div>
+            <a href="index.html" class="flex items-center py-4">
+              <span class="font-semibold text-green-600 text-2xl">TiffinTech</span>
+            </a>
+          </div>
+          <div class="hidden md:flex items-center space-x-1">
+            <a href="index.html" class="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300">Home</a>
+            <a href="browse.html" class="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300">Browse</a>
+          </div>
+        </div>
+        <div class="hidden md:flex items-center space-x-3">
+          <a href="vendor-registration.html" class="py-2 px-4 font-medium text-gray-500 rounded hover:bg-green-500 hover:text-white transition duration-300">For Vendors</a>
+          <a href="auth-student.html" class="py-2 px-4 font-medium text-white bg-green-600 rounded hover:bg-green-700 transition duration-300">Login</a>
+        </div>
+        <div class="md:hidden flex items-center">
+          <button class="outline-none mobile-menu-button">
+            <svg class="w-6 h-6 text-gray-500" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+              <path d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="hidden mobile-menu">
+      <ul class="pt-2 pb-3">
+        <li><a href="index.html" class="block pl-4 pr-4 py-2 text-sm text-gray-700 hover:bg-green-500 hover:text-white">Home</a></li>
+        <li><a href="browse.html" class="block pl-4 pr-4 py-2 text-sm text-gray-700 hover:bg-green-500 hover:text-white">Browse</a></li>
+        <li><a href="vendor-registration.html" class="block pl-4 pr-4 py-2 text-sm text-gray-700 hover:bg-green-500 hover:text-white">For Vendors</a></li>
+        <li><a href="auth-student.html" class="block pl-4 pr-4 py-2 text-sm text-gray-700 hover:bg-green-500 hover:text-white">Login</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Registration Form Section -->
+  <section class="container mx-auto px-6 py-12">
+    <div class="max-w-2xl mx-auto bg-white rounded-lg shadow-md overflow-hidden">
+      <div class="bg-green-600 py-4 px-6">
+        <h2 class="text-2xl font-bold text-white">Vendor Registration</h2>
+        <p class="text-green-100">Join TiffinTech and reach more students</p>
+      </div>
+      
+      <form id="vendor-registration-form" class="p-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+          <div>
+            <label for="name" class="block text-gray-700 font-medium mb-2">Name *</label>
+            <input type="text" id="name" name="name" required class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+            <p class="text-red-500 text-sm hidden mt-1" id="name-error">Please enter your name</p>
+          </div>
+          
+          <div>
+            <label for="phone" class="block text-gray-700 font-medium mb-2">Phone No *</label>
+            <input type="tel" id="phone" name="phone" required class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+            <p class="text-red-500 text-sm hidden mt-1" id="phone-error">Please enter a valid phone number</p>
+          </div>
+        </div>
+        
+        <div class="mb-6">
+          <label for="service-name" class="block text-gray-700 font-medium mb-2">Tiffin Service Name *</label>
+          <input type="text" id="service-name" name="service-name" required class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+          <p class="text-red-500 text-sm hidden mt-1" id="service-name-error">Please enter your tiffin service name</p>
+        </div>
+        
+        <div class="mb-6">
+          <label for="address" class="block text-gray-700 font-medium mb-2">Tiffin Providing Address *</label>
+          <textarea id="address" name="address" rows="3" required class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"></textarea>
+          <p class="text-red-500 text-sm hidden mt-1" id="address-error">Please enter your address</p>
+        </div>
+        
+        <div class="mb-6">
+          <label for="pincode" class="block text-gray-700 font-medium mb-2">Pincode *</label>
+          <input type="text" id="pincode" name="pincode" required class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+          <p class="text-red-500 text-sm hidden mt-1" id="pincode-error">Please enter a valid pincode</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+          <div>
+            <label for="tiffin-rate" class="block text-gray-700 font-medium mb-2">Monthly Tiffin Rate (₹) *</label>
+            <input type="number" id="tiffin-rate" name="tiffin-rate" required class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+            <p class="text-red-500 text-sm hidden mt-1" id="tiffin-rate-error">Please enter a valid rate</p>
+          </div>
+          
+          <div>
+            <label for="one-time-rate" class="block text-gray-700 font-medium mb-2">One Time Tiffin Rate (₹) *</label>
+            <input type="number" id="one-time-rate" name="one-time-rate" required class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+            <p class="text-red-500 text-sm hidden mt-1" id="one-time-rate-error">Please enter a valid rate</p>
+          </div>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+          <div>
+            <label class="block text-gray-700 font-medium mb-2">Food Type *</label>
+            <div class="flex space-x-4">
+              <label class="inline-flex items-center">
+                <input type="radio" name="food-type" value="veg" required class="form-radio text-green-500">
+                <span class="ml-2">Veg</span>
+              </label>
+              <label class="inline-flex items-center">
+                <input type="radio" name="food-type" value="non-veg" class="form-radio text-green-500">
+                <span class="ml-2">Non-Veg</span>
+              </label>
+            </div>
+            <p class="text-red-500 text-sm hidden mt-1" id="food-type-error">Please select food type</p>
+          </div>
+          
+          <div>
+            <label for="holiday" class="block text-gray-700 font-medium mb-2">Weekly Holiday *</label>
+            <select id="holiday" name="holiday" required class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+              <option value="">Select holiday</option>
+              <option value="sunday">Sunday</option>
+              <option value="monday">Monday</option>
+              <option value="tuesday">Tuesday</option>
+              <option value="wednesday">Wednesday</option>
+              <option value="thursday">Thursday</option>
+              <option value="friday">Friday</option>
+              <option value="saturday">Saturday</option>
+            </select>
+            <p class="text-red-500 text-sm hidden mt-1" id="holiday-error">Please select your weekly holiday</p>
+          </div>
+        </div>
+        
+        <div class="mb-6">
+          <label class="inline-flex items-center">
+            <input type="checkbox" id="terms" name="terms" required class="form-checkbox text-green-500">
+            <span class="ml-2 text-gray-700">I agree to the <a href="#" class="text-green-600 hover:underline">Terms and Conditions</a> *</span>
+          </label>
+          <p class="text-red-500 text-sm hidden mt-1" id="terms-error">You must agree to the terms and conditions</p>
+        </div>
+        
+        <div class="flex justify-between items-center">
+          <a href="auth-vendor.html" class="text-green-600 hover:underline">Already have an account? Login here</a>
+          <button type="submit" class="bg-green-600 text-white font-medium py-2 px-6 rounded-md hover:bg-green-700 transition duration-300">Register</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white pt-10 pb-6">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="flex flex-wrap">
+        <div class="w-full md:w-1/3 mb-6">
+          <h5 class="text-xl font-bold mb-4">TiffinTech</h5>
+          <p class="text-gray-400">Connecting Students with Local Tiffin Services</p>
+        </div>
+        <div class="w-full md:w-1/3 mb-6">
+          <h5 class="text-lg font-bold mb-4">Quick Links</h5>
+          <ul class="text-gray-400">
+            <li class="mb-2"><a href="index.html" class="hover:text-green-400">Home</a></li>
+            <li class="mb-2"><a href="browse.html" class="hover:text-green-400">Browse Vendors</a></li>
+            <li class="mb-2"><a href="vendor-registration.html" class="hover:text-green-400">Vendor Registration</a></li>
+          </ul>
+        </div>
+        <div class="w-full md:w-1/3 mb-6">
+          <h5 class="text-lg font-bold mb-4">Connect With Us</h5>
+          <div class="flex space-x-4">
+            <a href="#" class="text-gray-400 hover:text-green-400">
+              <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M18.77 7.46H14.5v-1.9c0-.9.6-1.1 1-1.1h3V.5h-4.33C10.24.5 9.5 3.44 9.5 5.32v2.15h-3v4h3v12h5v-12h3.85l.42-4z"/></svg>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-green-400">
+              <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M23.44 4.83c-.8.37-1.5.38-2.22.02.93-.56.98-.96 1.32-2.02-.88.52-1.86.9-2.9 1.1-.82-.88-2-1.43-3.3-1.43-2.5 0-4.55 2.04-4.55 4.54 0 .36.03.7.1 1.04-3.77-.2-7.12-2-9.36-4.75-.4.67-.6 1.45-.6 2.3 0 1.56.8 2.95 2 3.77-.74-.03-1.44-.23-2.05-.57v.06c0 2.2 1.56 4.03 3.64 4.44-.67.2-1.37.2-2.06.08.58 1.8 2.26 3.12 4.25 3.16C5.78 18.1 3.37 18.74 1 18.46c2 1.3 4.4 2.04 6.97 2.04 8.35 0 12.92-6.92 12.92-12.93 0-.2 0-.4-.02-.6.9-.63 1.96-1.22 2.56-2.14z"/></svg>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-green-400">
+              <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12.2 6.7c1.4 0 2.5 1.1 2.5 2.5s-1.1 2.5-2.5 2.5-2.5-1.1-2.5-2.5 1.1-2.5 2.5-2.5M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 16c-4 0-7.2-3.3-7.2-7.2 0-1.3.3-2.4.9-3.5 1.2 1.5 3 2.5 5 2.5 1.9 0 3.7-.9 4.9-2.4.5.7.8 1.6.8 2.6 0 2.2-1.8 4-4 4s-4-1.8-4-4c0-.9.3-1.8.8-2.5h-.3c-1.7 0-3.1-1.4-3.1-3.1 0-.7.2-1.4.6-2-.7 1.1-1.1 2.4-1.1 3.8 0 4.4 3.6 8 8 8s8-3.6 8-8-3.6-8-8-8c-.5 0-1 .1-1.5.2.4.6.7 1.3.7 2.1 0 1.2-.5 2.3-1.2 3.1-.6.7-1.5 1.1-2.5 1.1-1.4 0-2.5-1.1-2.5-2.5s1.1-2.5 2.5-2.5c.3 0 .6.1.9.2.7-1.1 1.8-1.9 3.1-2.3C13.4 4.1 12.7 4 12 4c-4.4 0-8 3.6-8 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-gray-700 mt-6 pt-6 text-center text-gray-400 text-sm">
+        <p>&copy; 2023 TiffinTech. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const form = document.getElementById('vendor-registration-form');
+      
+      // Mobile menu functionality
+      const menuButton = document.querySelector('.mobile-menu-button');
+      const menu = document.querySelector('.mobile-menu');
+      
+      if (menuButton && menu) {
+        menuButton.addEventListener('click', () => {
+          menu.classList.toggle('hidden');
+        });
+      }
+      
+      // Form validation and submission
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Reset error messages
+        const errorElements = document.querySelectorAll('[id$="-error"]');
+        errorElements.forEach(el => {
+          el.classList.add('hidden');
+        });
+        
+        let isValid = true;
+        
+        // Validate name
+        const name = document.getElementById('name');
+        if (!name.value.trim()) {
+          document.getElementById('name-error').classList.remove('hidden');
+          isValid = false;
+        }
+        
+        // Validate phone
+        const phone = document.getElementById('phone');
+        const phoneRegex = /^[0-9]{10}$/;
+        if (!phoneRegex.test(phone.value)) {
+          document.getElementById('phone-error').classList.remove('hidden');
+          isValid = false;
+        }
+        
+        // Validate service name
+        const serviceName = document.getElementById('service-name');
+        if (!serviceName.value.trim()) {
+          document.getElementById('service-name-error').classList.remove('hidden');
+          isValid = false;
+        }
+        
+        // Validate address
+        const address = document.getElementById('address');
+        if (!address.value.trim()) {
+          document.getElementById('address-error').classList.remove('hidden');
+          isValid = false;
+        }
+        
+        // Validate pincode
+        const pincode = document.getElementById('pincode');
+        const pincodeRegex = /^[0-9]{6}$/;
+        if (!pincodeRegex.test(pincode.value)) {
+          document.getElementById('pincode-error').classList.remove('hidden');
+          isValid = false;
+        }
+        
+        // Validate tiffin rate
+        const tiffinRate = document.getElementById('tiffin-rate');
+        if (!tiffinRate.value || isNaN(tiffinRate.value) || tiffinRate.value <= 0) {
+          document.getElementById('tiffin-rate-error').classList.remove('hidden');
+          isValid = false;
+        }
+        
+        // Validate one-time rate
+        const oneTimeRate = document.getElementById('one-time-rate');
+        if (!oneTimeRate.value || isNaN(oneTimeRate.value) || oneTimeRate.value <= 0) {
+          document.getElementById('one-time-rate-error').classList.remove('hidden');
+          isValid = false;
+        }
+        
+        // Validate food type
+        const foodType = document.querySelector('input[name="food-type"]:checked');
+        if (!foodType) {
+          document.getElementById('food-type-error').classList.remove('hidden');
+          isValid = false;
+        }
+        
+        // Validate holiday
+        const holiday = document.getElementById('holiday');
+        if (!holiday.value) {
+          document.getElementById('holiday-error').classList.remove('hidden');
+          isValid = false;
+        }
+        
+        // Validate terms
+        const terms = document.getElementById('terms');
+        if (!terms.checked) {
+          document.getElementById('terms-error').classList.remove('hidden');
+          isValid = false;
+        }
+        
+        if (isValid) {
+          // Store vendor data (in a real app, this would be sent to a server)
+          const vendorData = {
+            name: name.value,
+            phone: phone.value,
+            serviceName: serviceName.value,
+            address: address.value,
+            pincode: pincode.value,
+            tiffinRate: tiffinRate.value,
+            oneTimeRate: oneTimeRate.value,
+            foodType: foodType.value,
+            holiday: holiday.value
+          };
+          
+          localStorage.setItem('vendorData', JSON.stringify(vendorData));
+          
+          // Show success message and redirect
+          alert('Registration successful! Redirecting to your dashboard.');
+          window.location.href = 'vendor-dashboard.html';
+        }
+      });
+    });
+  </script>
+</body>
+</html>
