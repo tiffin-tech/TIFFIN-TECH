@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TiffinTech - My Subscriptions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #3a86ff;
+            --primary-dark: #2667cc;
+            --secondary: #ff9e00;
+            --secondary-dark: #e58c00;
+            --accent: #ff5400;
+            --dark: #2d3748;
+            --light: #f8f9fa;
+            --gray: #718096;
+            --light-gray: #e2e8f0;
+            --success: #48bb78;
+            --warning: #ecc94b;
+            --danger: #f56565;
+            --info: #4299e1;
+            --border-radius: 12px;
+            --box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 25px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        .nav-links a:hover, .nav-links a.active {
+            color: white;
+        }
+        
+        .user-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .notification-badge {
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: var(--accent);
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+        
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: white;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: white;
+        }
+        
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 80%;
+            height: 100%;
+            background: white;
+            z-index: 1000;
+            padding: 20px;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+            transition: var(--transition);
+            overflow-y: auto;
+        }
+        
+        .mobile-nav.active {
+            left: 0;
+        }
+        
+        .mobile-nav-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .close-menu {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark);
+        }
+        
+        .mobile-nav-links {
+            list-style: none;
+        }
+        
+        .mobile-nav-links li {
+            margin-bottom: 15px;
+        }
+        
+        .mobile-nav-links a {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 12px 15px;
+            text-decoration: none;
+            color: var(--dark);
+            border-radius: 5px;
+            transition: var(--transition);
+        }
+        
+        .mobile-nav-links a:hover, .mobile-nav-links a.active {
+            background-color: var(--light);
+            color: var(--primary);
+        }
+        
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+            display: none;
+        }
+        
+        .overlay.active {
+            display: block;
+        }
+        
+        /* Button Styles */
+        .btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background-color: var(--secondary);
+        }
+        
+        .btn-secondary:hover {
+            background-color: var(--secondary-dark);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .btn-sm {
+            padding: 8px 16px;
+            font-size: 0.9rem;
+        }
+        
+        /* Dashboard Layout */
+        .dashboard {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        /* Sidebar Styles */
+        .sidebar {
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 20px;
+            height: fit-content;
+        }
+        
+        .sidebar-menu {
+            list-style: none;
+        }
+        
+        .sidebar-menu li {
+            margin-bottom: 10px;
+        }
+        
+        .sidebar-menu a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 15px;
+            text-decoration: none;
+            color: var(--dark);
+            border-radius: 5px;
+            transition: var(--transition);
+        }
+        
+        .sidebar-menu a:hover, .sidebar-menu a.active {
+            background-color: var(--light);
+            color: var(--primary);
+        }
+        
+        .sidebar-menu i {
+            width: 20px;
+            text-align: center;
+        }
+        
+        /* Main Content Styles */
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .content-section {
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 20px;
+        }
+        
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--dark);
+        }
+        
+        /* Subscription Card Styles */
+        .subscription-card {
+            border: 1px solid var(--light-gray);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: var(--transition);
+        }
+        
+        .subscription-card:hover {
+            box-shadow: var(--box-shadow);
+        }
+        
+        .subscription-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+        
+        .subscription-title {
+            font-size: 1.3rem;
+            color: var(--dark);
+        }
+        
+        .subscription-status {
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .status-active {
+            background-color: #e6f4ee;
+            color: var(--success);
+        }
+        
+        .status-paused {
+            background-color: #fef6e6;
+            color: var(--warning);
+        }
+        
+        .status-cancelled {
+            background-color: #feeceb;
+            color: var(--danger);
+        }
+        
+        .subscription-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .detail-item {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .detail-label {
+            font-size: 0.8rem;
+            color: var(--gray);
+            margin-bottom: 5px;
+        }
+        
+        .detail-value {
+            font-weight: 500;
+        }
+        
+        .progress-container {
+            margin: 15px 0;
+        }
+        
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+        
+        .progress-bar {
+            height: 8px;
+            background-color: var(--light-gray);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background-color: var(--primary);
+            border-radius: 4px;
+        }
+        
+        .subscription-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        /* Stats Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .stat-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 20px;
+            box-shadow: var(--box-shadow);
+            text-align: center;
+        }
+        
+        .stat-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        .icon-primary {
+            color: var(--primary);
+        }
+        
+        .icon-secondary {
+            color: var(--secondary);
+        }
+        
+        .icon-info {
+            color: var(--info);
+        }
+        
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            z-index: 1000;
+            overflow: auto;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 50px 0;
+        }
+        
+        .modal-content {
+            background-color: white;
+            width: 90%;
+            max-width: 500px;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            position: relative;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--gray);
+        }
+        
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--light-gray);
+            border-radius: var(--border-radius);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .dashboard {
+                grid-template-columns: 1fr;
+            }
+            
+            .sidebar {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .user-profile span {
+                display: none;
+            }
+            
+            .subscription-header {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .subscription-details {
+                grid-template-columns: 1fr;
+            }
+            
+            .subscription-actions {
+                flex-wrap: wrap;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 1.3rem;
+            }
+            
+            .container {
+                width: 95%;
+                padding: 0 10px;
+            }
+            
+            .content-section {
+                padding: 15px;
+            }
+            
+            .section-title {
+                font-size: 1.3rem;
+            }
+            
+            .subscription-actions .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <i class="fas fa-utensils"></i>
+                    <span>Tiffin</span>Tech
+                </div>
+                
+                <ul class="nav-links">
+                    <li><a href="index.html">Dashboard</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="subscribers.html" class="active">My Subscriptions</a></li>
+                    <li><a href="payments.html">Payments</a></li>
+                    <li><a href="messages.html">Messages</a></li>
+                </ul>
+                
+                <div class="user-actions">
+                    <div class="notification-badge">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">3</span>
+                    </div>
+                    <div class="user-profile">
+                        <div class="avatar">RS</div>
+                        <span>Rahul S.</span>
+                    </div>
+                </div>
+                
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav" id="mobile-nav">
+        <div class="mobile-nav-header">
+            <h3>Menu</h3>
+            <button class="close-menu">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <ul class="mobile-nav-links">
+            <li><a href="index.html"><i class="fas fa-home"></i> Dashboard</a></li>
+            <li><a href="services.html"><i class="fas fa-utensils"></i> Services</a></li>
+            <li><a href="subscribers.html" class="active"><i class="fas fa-calendar-check"></i> My Subscriptions</a></li>
+            <li><a href="payments.html"><i class="fas fa-credit-card"></i> Payments</a></li>
+            <li><a href="messages.html"><i class="fas fa-comment"></i> Messages</a></li>
+            <li><a href="notifications.html"><i class="fas fa-bell"></i> Notifications</a></li>
+            <li><a href="reviews.html"><i class="fas fa-star"></i> Reviews</a></li>
+            <li><a href="settings.html"><i class="fas fa-cog"></i> Settings</a></li>
+            <li><a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+        </ul>
+    </div>
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Dashboard Section -->
+    <div class="container">
+        <div class="dashboard">
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <ul class="sidebar-menu">
+                    <li><a href="index.html"><i class="fas fa-home"></i> Dashboard</a></li>
+                    <li><a href="services.html"><i class="fas fa-utensils"></i> Browse Services</a></li>
+                    <li><a href="holidays.html"><i class="fas fa-calendar-alt"></i> Manage Holidays</a></li>
+                    <li><a href="subscribers.html" class="active"><i class="fas fa-calendar-check"></i> My Subscriptions</a></li>
+                    <li><a href="payments.html"><i class="fas fa-credit-card"></i> Payment History</a></li>
+                    <li><a href="messages.html"><i class="fas fa-comment"></i> Messages</a></li>
+                    <li><a href="reviews.html"><i class="fas fa-star"></i> My Reviews</a></li>
+                    <li><a href="settings.html"><i class="fas fa-cog"></i> Settings</a></li>
+                    <li><a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                </ul>
+            </div>
+
+            <!-- Main Content -->
+            <div class="main-content">
+                <!-- Welcome Banner -->
+                <div class="content-section">
+                    <h2>My Subscriptions</h2>
+                    <p>Manage your active tiffin services, track subscription details, and make changes to your plans.</p>
+                </div>
+
+                <!-- Stats Overview -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon icon-primary">
+                            <i class="fas fa-utensils"></i>
+                        </div>
+                        <div class="stat-value">2</div>
+                        <div class="stat-label">Active Subscriptions</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon icon-secondary">
+                            <i class="fas fa-calendar-day"></i>
+                        </div>
+                        <div class="stat-value">23</div>
+                        <div class="stat-label">Days Remaining</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon icon-info">
+                            <i class="fas fa-rupee-sign"></i>
+                        </div>
+                        <div class="stat-value">5,300</div>
+                        <div class="stat-label">Total Spent This Month</div>
+                    </div>
+                </div>
+
+                <!-- Active Subscriptions -->
+                <div class="content-section">
+                    <div class="section-header">
+                        <h3 class="section-title">Active Subscriptions</h3>
+                        <button class="btn btn-sm" onclick="location.href='services.html'">
+                            <i class="fas fa-plus"></i> Subscribe to New Service
+                        </button>
+                    </div>
+                    
+                    <!-- Subscription 1 -->
+                    <div class="subscription-card">
+                        <div class="subscription-header">
+                            <h4 class="subscription-title">South Delight</h4>
+                            <span class="subscription-status status-active">Active</span>
+                        </div>
+                        
+                        <div class="subscription-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Started On</span>
+                                <span class="detail-value">15 August 2023</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Plan Duration</span>
+                                <span class="detail-value">30 Days</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Days Remaining</span>
+                                <span class="detail-value">12 Days</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Next Billing</span>
+                                <span class="detail-value">27 September 2023</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Meal Plan</span>
+                                <span class="detail-value">Lunch + Dinner</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Price</span>
+                                <span class="detail-value">₹2,800/month</span>
+                            </div>
+                        </div>
+                        
+                        <div class="progress-container">
+                            <div class="progress-label">
+                                <span>Subscription Progress</span>
+                                <span>60% Complete</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 60%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="subscription-actions">
+                            <button class="btn btn-sm btn-outline" onclick="pauseSubscription()">
+                                <i class="fas fa-pause"></i> Pause
+                            </button>
+                            <button class="btn btn-sm btn-outline" onclick="changePlan()">
+                                <i class="fas fa-sync-alt"></i> Change Plan
+                            </button>
+                            <button class="btn btn-sm btn-outline" onclick="showSubscriptionDetails()">
+                                <i class="fas fa-info-circle"></i> Details
+                            </button>
+                            <button class="btn btn-sm" style="background-color: var(--danger);" onclick="cancelSubscription()">
+                                <i class="fas fa-times"></i> Cancel
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Subscription 2 -->
+                    <div class="subscription-card">
+                        <div class="subscription-header">
+                            <h4 class="subscription-title">Mama's Kitchen</h4>
+                            <span class="subscription-status status-active">Active</span>
+                        </div>
+                        
+                        <div class="subscription-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Started On</span>
+                                <span class="detail-value">1 September 2023</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Plan Duration</span>
+                                <span class="detail-value">30 Days</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Days Remaining</span>
+                                <span class="detail-value">26 Days</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Next Billing</span>
+                                <span class="detail-value">1 October 2023</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Meal Plan</span>
+                                <span class="detail-value">Lunch Only</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Price</span>
+                                <span class="detail-value">₹1,500/month</span>
+                            </div>
+                        </div>
+                        
+                        <div class="progress-container">
+                            <div class="progress-label">
+                                <span>Subscription Progress</span>
+                                <span>13% Complete</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 13%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="subscription-actions">
+                            <button class="btn btn-sm btn-outline" onclick="pauseSubscription()">
+                                <i class="fas fa-pause"></i> Pause
+                            </button>
+                            <button class="btn btn-sm btn-outline" onclick="changePlan()">
+                                <i class="fas fa-sync-alt"></i> Change Plan
+                            </button>
+                            <button class="btn btn-sm btn-outline" onclick="showSubscriptionDetails()">
+                                <i class="fas fa-info-circle"></i> Details
+                            </button>
+                            <button class="btn btn-sm" style="background-color: var(--danger);" onclick="cancelSubscription()">
+                                <i class="fas fa-times"></i> Cancel
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Paused Subscriptions -->
+                <div class="content-section">
+                    <div class="section-header">
+                        <h3 class="section-title">Paused Subscriptions</h3>
+                    </div>
+                    
+                    <div class="subscription-card">
+                        <div class="subscription-header">
+                            <h4 class="subscription-title">Healthy Bites</h4>
+                            <span class="subscription-status status-paused">Paused</span>
+                        </div>
+                        
+                        <div class="subscription-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Started On</span>
+                                <span class="detail-value">1 July 2023</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Paused On</span>
+                                <span class="detail-value">15 August 2023</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Days Remaining</span>
+                                <span class="detail-value">15 Days</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Resume Date</span>
+                                <span class="detail-value">Not Scheduled</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Meal Plan</span>
+                                <span class="detail-value">Breakfast + Lunch</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Price</span>
+                                <span class="detail-value">₹2,200/month</span>
+                            </div>
+                        </div>
+                        
+                        <div class="subscription-actions">
+                            <button class="btn btn-sm" onclick="resumeSubscription()">
+                                <i class="fas fa-play"></i> Resume
+                            </button>
+                            <button class="btn btn-sm" style="background-color: var(--danger);" onclick="cancelSubscription()">
+                                <i class="fas fa-times"></i> Cancel
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cancelled Subscriptions -->
+                <div class="content-section">
+                    <div class="section-header">
+                        <h3 class="section-title">Cancelled Subscriptions</h3>
+                    </div>
+                    
+                    <div class="subscription-card">
+                        <div class="subscription-header">
+                            <h4 class="subscription-title">Spice Garden</h4>
+                            <span class="subscription-status status-cancelled">Cancelled</span>
+                        </div>
+                        
+                        <div class="subscription-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Started On</span>
+                                <span class="detail-value">1 June 2023</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Cancelled On</span>
+                                <span class="detail-value">25 June 2023</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Reason</span>
+                                <span class="detail-value">Relocated</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Duration</span>
+                                <span class="detail-value">25 Days</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Meal Plan</span>
+                                <span class="detail-value">Dinner Only</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Price</span>
+                                <span class="detail-value">₹1,800/month</span>
+                            </div>
+                        </div>
+                        
+                        <div class="subscription-actions">
+                            <button class="btn btn-sm" onclick="resubscribe()">
+                                <i class="fas fa-redo"></i> Resubscribe
+                            </button>
+                            <button class="btn btn-sm btn-outline" onclick="showSubscriptionDetails()">
+                                <i class="fas fa-info-circle"></i> Details
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Subscription Details -->
+    <div class="modal" id="detailsModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('detailsModal')">&times;</span>
+            <h3>Subscription Details</h3>
+            
+            <div class="subscription-details" style="grid-template-columns: 1fr; margin: 20px 0;">
+                <div class="detail-item">
+                    <span class="detail-label">Service Provider</span>
+                    <span class="detail-value">South Delight</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Subscription ID</span>
+                    <span class="detail-value">TT-SUB-789456</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Start Date</span>
+                    <span class="detail-value">15 August 2023</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">End Date</span>
+                    <span class="detail-value">14 September 2023</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Billing Cycle</span>
+                    <span class="detail-value">Monthly</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Meals Included</span>
+                    <span class="detail-value">Lunch (12:30 PM), Dinner (7:30 PM)</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Special Instructions</span>
+                    <span class="detail-value">Less spicy, No onion garlic on Tuesdays</span>
+                </div>
+            </div>
+            
+            <button class="btn" onclick="closeModal('detailsModal')">Close</button>
+        </div>
+    </div>
+
+    <!-- Modal for Pause Subscription -->
+    <div class="modal" id="pauseModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('pauseModal')">&times;</span>
+            <h3>Pause Subscription</h3>
+            
+            <div class="form-group">
+                <label for="pauseDate">Pause From</label>
+                <input type="date" id="pauseDate">
+            </div>
+            
+            <div class="form-group">
+                <label for="resumeDate">Resume On (optional)</label>
+                <input type="date" id="resumeDate">
+            </div>
+            
+            <div class="form-group">
+                <label for="pauseReason">Reason for Pausing</label>
+                <select id="pauseReason">
+                    <option value="">Select a reason</option>
+                    <option value="vacation">Vacation/Out of station</option>
+                    <option value="health">Health reasons</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="pauseNotes">Additional Notes</label>
+                <textarea id="pauseNotes" placeholder="Any special instructions..."></textarea>
+            </div>
+            
+            <button class="btn" onclick="confirmPause()">Confirm Pause</button>
+        </div>
+    </div>
+
+    <script>
+        // Mobile menu functionality
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const closeMenuBtn = document.querySelector('.close-menu');
+        const mobileNav = document.getElementById('mobile-nav');
+        const overlay = document.getElementById('overlay');
+        
+        mobileMenuBtn.addEventListener('click', function() {
+            mobileNav.classList.add('active');
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+        
+        function closeMobileMenu() {
+            mobileNav.classList.remove('active');
+            overlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        
+        closeMenuBtn.addEventListener('click', closeMobileMenu);
+        overlay.addEventListener('click', closeMobileMenu);
+        
+        // Function to show subscription details modal
+        function showSubscriptionDetails() {
+            document.getElementById('detailsModal').style.display = 'flex';
+        }
+        
+        // Function to show pause subscription modal
+        function pauseSubscription() {
+            document.getElementById('pauseModal').style.display = 'flex';
+        }
+        
+        // Function to close modal
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+        
+        // Function to confirm pause
+        function confirmPause() {
+            alert('Your subscription has been paused successfully.');
+            closeModal('pauseModal');
+        }
+        
+        // Function to change plan
+        function changePlan() {
+            alert('You will be redirected to plan selection page.');
+        }
+        
+        // Function to cancel subscription
+        function cancelSubscription() {
+            if(confirm('Are you sure you want to cancel this subscription?')) {
+                alert('Your subscription has been cancelled. We\'re sorry to see you go!');
+            }
+        }
+        
+        // Function to resume subscription
+        function resumeSubscription() {
+            alert('Your subscription has been resumed. Meals will start from tomorrow.');
+        }
+        
+        // Function to resubscribe
+        function resubscribe() {
+            alert('Redirecting to subscription page for this service.');
+        }
+        
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+            }
+        }
+        
+        // Set minimum date for pause date (tomorrow)
+        const today = new Date();
+        const tomorrow = new Date(today);
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        
+        const yyyy = tomorrow.getFullYear();
+        const mm = String(tomorrow.getMonth() + 1).padStart(2, '0');
+        const dd = String(tomorrow.getDate()).padStart(2, '0');
+        
+        document.getElementById('pauseDate').min = `${yyyy}-${mm}-${dd}`;
+    </script>
+</body>
+</html>
